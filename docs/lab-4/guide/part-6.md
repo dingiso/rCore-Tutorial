@@ -29,6 +29,7 @@ pub trait Scheduler<ThreadType: Clone + Eq>: Default {
 
 {% label %}os/src/main.rs{% endlabel %}
 ```rust
+#[no_mangle]
 pub extern "C" fn rust_main() -> ! {
     memory::init();
     interrupt::init();
@@ -57,7 +58,7 @@ pub extern "C" fn rust_main() -> ! {
     unreachable!()
 }
 
-fn sample_process(message: usize) {
+fn sample_process(id: usize) {
     println!("hello from kernel thread {}", id);
 }
 ```
